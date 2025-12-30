@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Maps Embed</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .no-address {
+            font-family: 'Segoe UI', sans-serif;
+            padding: 20px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function loadMap() {
+            try {
+                var parentXrm = window.parent.Xrm;
+
+                if (parentXrm && parentXrm.Page.data) {
+                    var street = parentXrm.Page.getAttribute("address1_line1") ? parentXrm.Page.getAttribute("address1_line1").getValue() : "";
+                    var city = parentXrm.Page.getAttribute("address1_city") ? parentXrm.Page.getAttribute("address1_city").getValue() : "";
+                    var country = parentXrm.Page.getAttribute("address1_country") ? parentXrm.Page.getAttribute("address1_country").getValue() : "";
+
+                    if (street || city) {
+                        var fullAddress = "";
+                        if (street) fullAddress += street + ", ";
+                        if (city) fullAddress += city + ", ";
+                        if (country) fullAddress += country;
+
+                        var encodedAddress = encodeURIComponent(fullAddress);
+
+                        var apiKey = "AIzaSyA15EHJgYRBlBeSCT160yNFtI1V606zqvU";
+
+                        // --- FIX IS HERE ---
+                        // We use the official 'embed/v1/place' mode.
+                        // This forces Google to put a PIN on the specific address.
+                        var mapUrl = "https://www.google.com/maps/embed/v1/place?key=" + apiKey + "&q=" + encodedAddress;
+
+                        document.getElementById("mapFrame").src = mapUrl;
+                        document.getElementById("message").style.display = "none";
+                    } else {
+                        document.getElementById("message").innerText = "No address found for this contact.";
+                    }
+                }
+            } catch (e) {
+                document.getElementById("message").innerText = "Error loading map: " + e.message;
+            }
+        }
+    </script>
+</head>
+<body onload="loadMap()">
+    <div id="message" class="no-address">Loading Map...</div>
+    <iframe id="mapFrame" allowfullscreen></iframe>
+</body>
+</html>

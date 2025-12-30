@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/Client Scripts/">
+    <File Path="contactscripts.js" />
+    <File Path="DashboardWelcome.html" />
+    <File Path="Maps_contact.html" />
+  </Folder>
+  <Project Path="../../../../../../../../MICROSOFT/Microsoft Dynamics 365 &amp; PowerApps Developer Course/MyPlugins/MyCustomWorkflows/MyCustomWorkflows.csproj" Id="91d52fcf-9109-437d-9be9-4d082f7ab647" />
+  <Project Path="../../../../../../../../MICROSOFT/Microsoft Dynamics 365 &amp; PowerApps Developer Course/MyPlugins/MyPlugins/MyPlugins.csproj" Id="ccc8af15-44d9-424b-8209-d6958674610d" />
+  <Properties Name="CRMSolutionProperties">
+    <Property Name="SolutionIsBoundToCRM" Value="True" />
+  </Properties>
+</Solution>

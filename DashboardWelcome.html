@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome Message</title>
+    <style>
+        /* 1. Global Reset to prevent cut-off borders */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            /* Flexbox to perfectly center the card */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Fill the entire iframe height */
+            width: 100%;
+            overflow: hidden; /* Prevent scrollbars */
+        }
+
+        .container {
+            /* THE BLACK FRAME */
+            border: 3px solid black;
+            /* Layout inside the frame */
+            padding: 40px;
+            text-align: center;
+            background-color: #f9f9f9;
+            /* Responsive Sizing */
+            width: 90%; /* Leave 5% space on each side */
+            max-width: 600px; /* Stop it from getting too huge */
+            /* Aesthetics */
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #0078d4; /* Dynamics Blue */
+            font-size: 28px;
+            margin: 0 0 15px 0;
+            font-weight: 700;
+        }
+
+        p {
+            color: #333333;
+            font-size: 16px;
+            margin: 0 0 25px 0;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            padding: 12px 24px;
+            border-radius: 6px;
+            display: inline-block;
+            font-weight: 600;
+            color: #555;
+            cursor: default;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+    </style>
+
+    <script>
+        // 2. Popup Script
+        window.onload = function () {
+            try {
+                var xrm = window.parent.Xrm;
+                if (xrm && xrm.Navigation) {
+                    var alertStrings = {
+                        confirmButtonLabel: "OK",
+                        text: "Welcome to Erez Amsalem Web Developer :-)",
+                        title: "Welcome"
+                    };
+                    var alertOptions = { height: 120, width: 260 };
+
+                    // Trigger the popup
+                    xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+                }
+            } catch (e) {
+                console.error("Error showing welcome message: " + e.message);
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, Erez Amsalem!</h1>
+        <p>This is your custom Web Developer Dashboard.</p>
+
+        <div class="highlight">
+            <span style="font-size: 20px; vertical-align: middle;">💻</span>
+            <span style="vertical-align: middle;">Ready to code?</span>
+        </div>
+    </div>
+</body>
+</html>
